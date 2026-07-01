@@ -1,0 +1,559 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Clinical Corporate Light Mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  /* Slate 50 */
+  --bg-card: #ffffff;
+  --accent-primary: #0284c7;
+  /* Sky Blue */
+  --accent-secondary: #0e7490;
+  /* Cyan */
+  --text-primary: #0f172a;
+  /* Slate 900 */
+  --text-secondary: #475569;
+  /* Slate 600 */
+  --border-color: #cbd5e1;
+  /* Slate 300 */
+  --btn-bg: var(--accent-primary);
+  --btn-text: #ffffff;
+  --btn-hover-bg: var(--accent-secondary);
+  --btn-hover-text: #ffffff;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Glassmorphism Light Variables */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.04);
+}
+
+[data-theme='dark'] {
+  /* Clinical Corporate Dark Mode */
+  --bg-primary: #0b0f19;
+  /* Midnight Blue */
+  --bg-secondary: #0f172a;
+  /* Slate 900 */
+  --bg-card: #0f172a;
+  --accent-primary: #38bdf8;
+  /* Medical Light Blue */
+  --accent-secondary: #2dd4bf;
+  /* Teal Accent */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  /* Slate 400 */
+  --border-color: #334155;
+  /* Slate 700 */
+  --btn-bg: var(--accent-primary);
+  --btn-text: #0b0f19;
+  --btn-hover-bg: var(--accent-secondary);
+  --btn-hover-text: #0b0f19;
+
+  /* Glassmorphism Dark Variables */
+  --glass-bg: rgba(11, 15, 25, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.65;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-title {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Background Glow Auras - Creates deep premium texture without boxes */
+.glow-wrapper {
+  position: relative;
+}
+
+.bg-glow-cyan {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(56, 189, 248, 0) 70%);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-glow-teal {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.07) 0%, rgba(45, 212, 191, 0) 70%);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Flat Grid Container & Section Padding */
+.corporate-section {
+  border-top: 1px solid var(--border-color);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+/* Creative Hollow Offset Image Frame - Clean container for zoom/sweeps */
+.image-frame-creative {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+/* Coding Video Effect - Ken Burns slow camera motion panning */
+@keyframes kenburns {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  25% {
+    transform: scale(1.08) translate(-1%, 1%);
+  }
+
+  50% {
+    transform: scale(1.15) translate(1.5%, -1%);
+  }
+
+  75% {
+    transform: scale(1.08) translate(-0.5%, -0.5%);
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+.video-effect-image {
+  animation: kenburns 28s ease-in-out infinite;
+  transform-origin: center;
+  transition: filter 0.5s ease;
+  display: block;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Coding Video Effect - Laser/Light sweep scan line overlay */
+.laser-sweep-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.laser-sweep-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(56, 189, 248, 0.22) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-20deg) translateX(-150%);
+  animation: laserSweep 7s infinite linear;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
+}
+
+@keyframes laserSweep {
+  0% {
+    transform: skewX(-20deg) translateX(-150%);
+  }
+  100% {
+    transform: skewX(-20deg) translateX(320%);
+  }
+}
+
+/* Premium smooth page fade-in reveal */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Coding Video Effect - Glowing light sweep across text */
+@keyframes textLaserGlow {
+  0% {
+    background-position: -150% center;
+  }
+
+  100% {
+    background-position: 150% center;
+  }
+}
+
+.video-text-effect {
+  background: linear-gradient(95deg,
+      var(--text-primary) 0%,
+      var(--text-primary) 40%,
+      var(--accent-primary) 50%,
+      var(--text-primary) 60%,
+      var(--text-primary) 100%);
+  background-size: 150% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textLaserGlow 5.0s infinite linear;
+  display: inline-block;
+}
+
+[data-theme='dark'] .video-text-effect {
+  background: linear-gradient(95deg,
+      #ffffff 0%,
+      #ffffff 40%,
+      var(--accent-primary) 50%,
+      #ffffff 60%,
+      #ffffff 100%);
+  background-size: 150% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Borderless but highly interactive panel list */
+.creative-panel {
+  background: transparent;
+  border-left: 2px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.creative-panel:hover {
+  border-left-color: var(--accent-primary);
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.03) 0%, rgba(2, 132, 199, 0) 100%);
+  padding-left: 2.5rem;
+}
+
+[data-theme='dark'] .creative-panel:hover {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.03) 0%, rgba(56, 189, 248, 0) 100%);
+}
+
+/* Corporate Buttons */
+.btn-corporate {
+  background: var(--btn-bg);
+  border: 1px solid transparent;
+  color: var(--btn-text);
+  padding: 0.9rem 2.4rem;
+  border-radius: 4px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.1);
+}
+
+.btn-corporate:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(2, 132, 199, 0.2);
+}
+
+.btn-corporate:active {
+  transform: translateY(0);
+}
+
+.btn-corporate-outline {
+  background: transparent;
+  border: 1.5px solid var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: none;
+}
+
+.btn-corporate-outline:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+.btn-corporate-text {
+  background: transparent;
+  border: none;
+  color: var(--accent-primary);
+  padding: 0.5rem 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.btn-corporate-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--accent-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: var(--transition);
+}
+
+.btn-corporate-text:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-corporate-text:hover {
+  color: var(--accent-secondary);
+}
+
+/* Flat Badges */
+.badge-corporate {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-left: 3px solid var(--accent-primary);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3.5rem;
+}
+
+/* Footer Link Hover Slider */
+.footer-link:hover {
+  transform: translateX(6px);
+  color: var(--accent-primary) !important;
+}
+
+/* Logo Text Hover Shimmer Wave */
+.logo:hover .logo-name {
+  color: var(--accent-primary) !important;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.35);
+}
+
+/* Premium Floating WhatsApp Button with Breathing Pulse */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5), 0 6px 20px rgba(37, 211, 102, 0.35);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0), 0 6px 20px rgba(37, 211, 102, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 6px 20px rgba(37, 211, 102, 0.35);
+  }
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+  animation: whatsappPulse 2.5s infinite ease-in-out;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  background-color: #128C7E;
+  transform: scale(1.08) translateY(-3px);
+}
+
+.whatsapp-float svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* Digital Scanner Effect (Dot Matrix + Vertical Sweep Line) */
+.digital-scanner-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.digital-scanner-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(45, 212, 191, 0.15) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.digital-scanner-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(45, 212, 191, 0) 0%, rgba(45, 212, 191, 0.8) 50%, rgba(45, 212, 191, 0) 100%);
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+  transform: translateY(-4px);
+  animation: scanLineVertical 5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 2;
+  will-change: transform;
+}
+
+@keyframes scanLineVertical {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(320px);
+    opacity: 0;
+  }
+}
+
+/* Clean Hover Title Transition for Treatments */
+.service-title-hover {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.treatment-row-hover:hover .service-title-hover {
+  color: var(--accent-primary) !important;
+}
+
+/* Animated Smooth Page Transition (Horizontal Slide) */
+@keyframes pageSlideHorizontal {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.page-transition {
+  animation: pageSlideHorizontal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* ===== Mobile Responsive for Custom Effects ===== */
+@media (max-width: 768px) {
+  .treatment-img {
+    height: 240px !important;
+  }
+
+  .digital-scanner-container {
+    max-height: 240px;
+  }
+
+  .laser-sweep-container {
+    border-radius: 4px;
+  }
+
+  .video-text-effect {
+    font-size: 1.4rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .treatment-img {
+    height: 200px !important;
+  }
+
+  .digital-scanner-container {
+    max-height: 200px;
+  }
+
+  .video-text-effect {
+    font-size: 1.2rem !important;
+  }
+}
