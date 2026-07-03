@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowRight } from 'lucide-react';
 import { navigationLinks } from '../data/dentalData';
 import logo from '../assets/logo.png';
 
@@ -10,18 +10,28 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
 
+  // Scroll-aware nav shrink effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="nav">
+    <nav className={`nav ${isScrolled ? 'nav-scrolled' : ''}`}>
       <Link to="/" className="logo font-playfair" onClick={closeMenu}>
         <div className="logo-container">
-          <img src={logo} alt="Denteal Care Logo" className="logo-img" />
+          <img src={logo} alt="Sarojini Dental & Co. Logo" className="logo-img" />
         </div>
         <div className="logo-text-wrapper">
-          <span className="logo-name">DENTEAL</span>
-          <span className="logo-sub">CARE CLINIC</span>
+          <span className="logo-name">SAROJINI</span>
+          <span className="logo-sub">DENTAL & CO.</span>
         </div>
       </Link>
       
@@ -44,11 +54,21 @@ const Header = () => {
         ))}
       </ul>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
         <button 
           onClick={toggleTheme} 
           className="theme-toggle-btn"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', padding: '0.5rem' }}
+          style={{ 
+            background: 'none', 
+            border: 'none', 
+            cursor: 'pointer', 
+            color: 'var(--text-primary)', 
+            display: 'flex', 
+            alignItems: 'center', 
+            padding: '0.5rem',
+            borderRadius: '8px',
+            transition: 'background 0.3s ease'
+          }}
           aria-label="Toggle Theme"
         >
           {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
@@ -64,32 +84,16 @@ const Header = () => {
         </button>
 
         <button 
-          className="desktop-only" 
+          className="desktop-only btn-gradient" 
           style={{ 
-            background: 'none', 
-            border: '1.5px solid var(--accent-primary)', 
-            color: 'var(--accent-primary)', 
-            padding: '0.5rem 1.2rem', 
-            fontSize: '0.75rem', 
-            fontWeight: '600', 
-            borderRadius: '4px', 
-            cursor: 'pointer', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.05em', 
-            fontFamily: 'Outfit, sans-serif',
-            transition: 'all 0.3s ease' 
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--accent-primary)';
-            e.currentTarget.style.color = 'var(--bg-primary)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-            e.currentTarget.style.color = 'var(--accent-primary)';
+            padding: '0.6rem 1.4rem', 
+            fontSize: '0.72rem', 
+            borderRadius: '8px',
+            gap: '0.4rem'
           }}
           onClick={() => navigate('/contact')}
         >
-          Book Appointment
+          Request Quote <ArrowRight size={14} />
         </button>
       </div>
     </nav>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Calendar, MapPin, Phone, Mail, Clock, ChevronRight, Stethoscope, ShieldCheck, Star, Send, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Phone, Mail, Clock, ChevronRight, ChevronDown, Download, Stethoscope, ShieldCheck, Star, Send, ArrowRight } from 'lucide-react';
 import { contactData, servicesData } from '../data/dentalData';
 import './Contact.css';
 
@@ -8,13 +8,18 @@ const Contact = () => {
     name: '',
     email: '',
     phone: '',
+    institution: '',
+    clientType: 'Dental Clinic',
     date: '',
     treatment: servicesData.therapies[0].title,
     message: ''
   });
 
   const [activeCard, setActiveCard] = useState(null);
-  const [formStep, setFormStep] = useState(0); // 0 = personal, 1 = appointment
+  const [formStep, setFormStep] = useState(0); // 0 = personal/institutional, 1 = inquiry details
+  const [openFaq, setOpenFaq] = useState(null);
+  const [isDownloading, setIsDownloading] = useState(false);
+  
   const sectionRefs = useRef([]);
 
   // Intersection Observer for scroll animations
@@ -39,23 +44,25 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.date) {
-      alert("Please fill in your Name and Preferred Date to proceed with the booking.");
+    if (!formData.name || !formData.date || !formData.institution) {
+      alert("Please fill in Name, Institution, and Preferred Date to proceed with the inquiry.");
       return;
     }
 
     const whatsappNumber = "919999999999";
     const messageLines = [
-      "🦷 *New Dental Consultation Booking* 🦷",
+      "🏢 *New B2B Dental Inquiry - Sarojini Dental & Co.* 🏢",
       "",
       `*Name:* ${formData.name}`,
+      `*Institution Name:* ${formData.institution}`,
+      `*Institution Type:* ${formData.clientType}`,
       `*Email:* ${formData.email || 'Not provided'}`,
-      `*Phone:* ${formData.phone || 'Not provided'}`,
-      `*Preferred Date:* ${formData.date}`,
-      `*Treatment Type:* ${formData.treatment}`,
-      `*Additional Notes:* ${formData.message || 'None'}`,
+      `*Phone/WhatsApp:* ${formData.phone || 'Not provided'}`,
+      `*Preferred Demo/Consultation Date:* ${formData.date}`,
+      `*Product Category:* ${formData.treatment}`,
+      `*Requirement Notes:* ${formData.message || 'None'}`,
       "",
-      "Please review and confirm this clinic appointment! ✨"
+      "Please review and contact this institutional prospect! ✨"
     ];
 
     const message = messageLines.join("\n");
@@ -64,17 +71,26 @@ const Contact = () => {
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleDownloadCatalog = () => {
+    setIsDownloading(true);
+    setTimeout(() => {
+      setIsDownloading(false);
+      alert("Thank you! The Sarojini Dental & Co. 2026 Product Portfolio Catalog has been loaded.");
+      window.open('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank');
+    }, 1200);
+  };
+
   const contactCards = [
     {
       icon: MapPin,
-      title: "Visit Our Clinic",
-      detail: "123, Aesthetic Dental Tower,\nSuite 4B, Sector 5,\nBhubaneswar, Odisha 751024",
+      title: "Visit Our Showroom",
+      detail: "Plot No. 452, Commercial District,\nJayadev Vihar, Bhubaneswar,\nOdisha 751013",
       accent: '#0ea5e9',
       bg: 'linear-gradient(135deg, #0ea5e9, #06b6d4)'
     },
     {
       icon: Phone,
-      title: "Call Us Now",
+      title: "Call B2B Sales",
       detail: "+91 99999 99999\n+91 88888 88888",
       accent: '#8b5cf6',
       bg: 'linear-gradient(135deg, #8b5cf6, #a78bfa)'
@@ -82,19 +98,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      detail: "contact@dentealcare.com\nappointments@dentealcare.com",
+      detail: "sales@sarojinidental.com\nsupport@sarojinidental.com",
       accent: '#f43f5e',
       bg: 'linear-gradient(135deg, #f43f5e, #fb7185)'
     }
   ];
 
   const workingHours = [
-    { day: 'Monday', hours: '9:00 AM - 8:00 PM', isOpen: true },
-    { day: 'Tuesday', hours: '9:00 AM - 8:00 PM', isOpen: true },
-    { day: 'Wednesday', hours: '9:00 AM - 8:00 PM', isOpen: true },
-    { day: 'Thursday', hours: '9:00 AM - 8:00 PM', isOpen: true },
-    { day: 'Friday', hours: '9:00 AM - 8:00 PM', isOpen: true },
-    { day: 'Saturday', hours: '10:00 AM - 6:00 PM', isOpen: true },
+    { day: 'Monday', hours: '9:30 AM - 6:30 PM', isOpen: true },
+    { day: 'Tuesday', hours: '9:30 AM - 6:30 PM', isOpen: true },
+    { day: 'Wednesday', hours: '9:30 AM - 6:30 PM', isOpen: true },
+    { day: 'Thursday', hours: '9:30 AM - 6:30 PM', isOpen: true },
+    { day: 'Friday', hours: '9:30 AM - 6:30 PM', isOpen: true },
+    { day: 'Saturday', hours: '9:30 AM - 6:30 PM', isOpen: true },
     { day: 'Sunday', hours: 'Closed', isOpen: false }
   ];
 
@@ -103,10 +119,33 @@ const Contact = () => {
   const todayMapped = todayIndex === 0 ? 6 : todayIndex - 1;
 
   const features = [
-    { icon: ShieldCheck, text: "100% Sterilized Equipment" },
-    { icon: Stethoscope, text: "Board-Certified Dentists" },
-    { icon: Star, text: "5-Star Patient Reviews" },
-    { icon: Clock, text: "Same-Day Appointments" }
+    { icon: ShieldCheck, text: "100% Genuine Brands & Warranty" },
+    { icon: Stethoscope, text: "Professional Biomedical Engineers" },
+    { icon: Star, text: "Trusted Dealer Since 2022" },
+    { icon: Clock, text: "Dependable Technical Support" }
+  ];
+
+  const faqs = [
+    {
+      q: "What are your standard delivery timelines across India?",
+      a: "Consumables are dispatched within 24 hours and delivered within 2-5 business days. Heavy equipment and CAD/CAM laboratory systems depend on installation readiness and usually take 7-14 business days."
+    },
+    {
+      q: "Do you provide on-site installation and staff training?",
+      a: "Yes, all advanced dental equipment and lab machinery include free professional installation and hands-on calibration by our certified biomedical engineers, along with operational training for your clinical team."
+    },
+    {
+      q: "How does the warranty service work for imported brands?",
+      a: "As the authorized channel partner, we handle all warranty claims directly. We supply 100% genuine manufacturer spare parts and coordinate technical maintenance to keep your equipment under official warranty protocols."
+    },
+    {
+      q: "Do you offer demo sessions for intraoral scanners and lab mills?",
+      a: "Absolutely. You can request a physical demonstration at our Bhubaneswar showroom or arrange a virtual live demo session with our product experts by filling out the inquiry form above."
+    },
+    {
+      q: "What are the payment terms for institutional bulk purchases?",
+      a: "We offer tailored financing support, institutional lines of credit, and flexible structured payment milestones for bulk consumable agreements and complete clinic setups. Get in touch with our sales desk for custom quotes."
+    }
   ];
 
   return (
@@ -122,30 +161,30 @@ const Contact = () => {
         <div className="container contact-hero-content">
           <div className="contact-hero-badge">
             <span className="badge-dot"></span>
-            Accepting New Patients
+            B2B Dental Solutions
           </div>
           <h1 className="contact-hero-title font-title">
-            Let's Create Your<br />
-            <span className="contact-hero-highlight">Perfect Smile</span>
+            Equipping Your Facility<br />
+            <span className="contact-hero-highlight">With Precision</span>
           </h1>
           <p className="contact-hero-subtitle">
-            Schedule your consultation today and take the first step towards 
-            a healthier, more confident smile with our expert dental team.
+            Partner with Sarojini Dental & Co. to access premium dental equipment, 
+            lab systems, and clinical consumables backed by manufacturer warranties.
           </p>
           <div className="contact-hero-stats">
             <div className="hero-stat">
-              <span className="hero-stat-number">15K+</span>
-              <span className="hero-stat-label">Happy Patients</span>
+              <span className="hero-stat-number">500+</span>
+              <span className="hero-stat-label">Clinics Equipped</span>
             </div>
             <div className="hero-stat-divider"></div>
             <div className="hero-stat">
-              <span className="hero-stat-number">12+</span>
-              <span className="hero-stat-label">Years Experience</span>
+              <span className="hero-stat-number">Since 2022</span>
+              <span className="hero-stat-label">Established Year</span>
             </div>
             <div className="hero-stat-divider"></div>
             <div className="hero-stat">
-              <span className="hero-stat-number">98%</span>
-              <span className="hero-stat-label">Success Rate</span>
+              <span className="hero-stat-number">100%</span>
+              <span className="hero-stat-label">Genuine Products</span>
             </div>
           </div>
         </div>
@@ -167,7 +206,7 @@ const Contact = () => {
                   <card.icon size={24} color="#fff" strokeWidth={2} />
                 </div>
                 <h3 className="contact-card-title font-title">{card.title}</h3>
-                <p className="contact-card-detail">{card.detail}</p>
+                <p className="contact-card-detail" style={{ whiteSpace: 'pre-line' }}>{card.detail}</p>
                 <div className="contact-card-arrow">
                   <ArrowRight size={18} />
                 </div>
@@ -183,14 +222,14 @@ const Contact = () => {
           <div className="contact-booking-grid">
             {/* Left: Info & Features */}
             <div className="contact-booking-info">
-              <span className="contact-section-tag">BOOK APPOINTMENT</span>
+              <span className="contact-section-tag">SUBMIT INQUIRY</span>
               <h2 className="contact-booking-title font-title">
-                Your Dental Health<br />Journey Starts Here
+                Get a Customized<br />Product Quote
               </h2>
               <p className="contact-booking-desc">
-                Fill out the form and our patient coordinator will personally 
-                reach out within 30 minutes to confirm your appointment and 
-                answer any questions.
+                Fill out the form below. Our dedicated B2B product consultants 
+                will reach out within 2 hours with product specifications, 
+                pricing details, and catalog options.
               </p>
 
               <div className="contact-features-list">
@@ -229,8 +268,8 @@ const Contact = () => {
             {/* Right: Form */}
             <div className="contact-form-container">
               <div className="contact-form-header">
-                <h3 className="font-title">Request Consultation</h3>
-                <p>Free initial consultation for new patients</p>
+                <h3 className="font-title">Request a Quote / Demo</h3>
+                <p>Free consulting & catalog guidance</p>
               </div>
 
               {/* Step Indicators */}
@@ -241,23 +280,29 @@ const Contact = () => {
                   type="button"
                 >
                   <span className="step-number">1</span>
-                  Personal Info
+                  Personal & Institutional Info
                 </button>
                 <div className="step-connector">
                   <div className={`step-connector-fill ${formStep >= 1 ? 'step-connector-done' : ''}`}></div>
                 </div>
                 <button
                   className={`form-step-btn ${formStep === 1 ? 'form-step-active' : ''}`}
-                  onClick={() => setFormStep(1)}
+                  onClick={() => {
+                    if (formData.name && formData.institution && formData.phone) {
+                      setFormStep(1);
+                    } else {
+                      alert("Please fill in Name, Institution Name, and Phone to proceed.");
+                    }
+                  }}
                   type="button"
                 >
                   <span className="step-number">2</span>
-                  Appointment
+                  Inquiry Details
                 </button>
               </div>
 
               <form onSubmit={handleSubmit} className="contact-form">
-                {/* Step 1: Personal Info */}
+                {/* Step 1: Personal & Institutional Info */}
                 <div className={`form-step-panel ${formStep === 0 ? 'form-step-panel-active' : ''}`}>
                   <div className="contact-field">
                     <label className="contact-label">Full Name *</label>
@@ -271,6 +316,31 @@ const Contact = () => {
                     />
                   </div>
                   <div className="contact-field">
+                    <label className="contact-label">Institution / Clinic Name *</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. City Dental Hospital"
+                      required
+                      value={formData.institution}
+                      onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+                      className="contact-input"
+                    />
+                  </div>
+                  <div className="contact-field">
+                    <label className="contact-label">Institution Type</label>
+                    <select
+                      value={formData.clientType}
+                      onChange={(e) => setFormData({ ...formData, clientType: e.target.value })}
+                      className="contact-input"
+                    >
+                      <option value="Dental Clinic">Dental Clinic</option>
+                      <option value="Hospital">Hospital</option>
+                      <option value="Dental Laboratory">Dental Laboratory</option>
+                      <option value="Educational Institution">Educational Institution</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div className="contact-field">
                     <label className="contact-label">Email Address</label>
                     <input
                       type="email"
@@ -281,10 +351,11 @@ const Contact = () => {
                     />
                   </div>
                   <div className="contact-field">
-                    <label className="contact-label">Phone Number</label>
+                    <label className="contact-label">Phone / WhatsApp *</label>
                     <input
                       type="tel"
                       placeholder="+91 98765 43210"
+                      required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="contact-input"
@@ -293,16 +364,22 @@ const Contact = () => {
                   <button
                     type="button"
                     className="contact-next-btn"
-                    onClick={() => setFormStep(1)}
+                    onClick={() => {
+                      if (!formData.name || !formData.institution || !formData.phone) {
+                        alert("Please fill in Name, Institution Name, and Phone to proceed.");
+                        return;
+                      }
+                      setFormStep(1);
+                    }}
                   >
-                    Next: Appointment Details <ChevronRight size={18} />
+                    Next: Inquiry Details <ChevronRight size={18} />
                   </button>
                 </div>
 
-                {/* Step 2: Appointment */}
+                {/* Step 2: Inquiry Details */}
                 <div className={`form-step-panel ${formStep === 1 ? 'form-step-panel-active' : ''}`}>
                   <div className="contact-field">
-                    <label className="contact-label">Preferred Date *</label>
+                    <label className="contact-label">Preferred Demo / Consultation Date *</label>
                     <input
                       type="date"
                       required
@@ -312,7 +389,7 @@ const Contact = () => {
                     />
                   </div>
                   <div className="contact-field">
-                    <label className="contact-label">Treatment Type</label>
+                    <label className="contact-label">Product Category of Interest</label>
                     <select
                       value={formData.treatment}
                       onChange={(e) => setFormData({ ...formData, treatment: e.target.value })}
@@ -320,15 +397,15 @@ const Contact = () => {
                     >
                       {servicesData.therapies.map((therapy, idx) => (
                         <option key={idx} value={therapy.title}>
-                          {therapy.title} — {therapy.price.split('|')[0].trim()}
+                          {therapy.title}
                         </option>
                       ))}
                     </select>
                   </div>
                   <div className="contact-field">
-                    <label className="contact-label">Additional Notes</label>
+                    <label className="contact-label">Requirement Details</label>
                     <textarea
-                      placeholder="Any concerns, allergies, or specific requests..."
+                      placeholder="Specify items needed, model numbers, volume, or setup requests..."
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -344,35 +421,81 @@ const Contact = () => {
                       Back
                     </button>
                     <button type="submit" className="contact-submit-btn">
-                      <Send size={16} /> Book via WhatsApp
+                      <Send size={16} /> Submit via WhatsApp
                     </button>
                   </div>
                 </div>
               </form>
             </div>
           </div>
+
+          {/* ═══════ CATALOG DOWNLOAD CARD ═══════ */}
+          <div className="catalog-download-card">
+            <h3 className="font-title catalog-title">Download Product Portfolio Catalog</h3>
+            <p className="catalog-desc">
+              Get detailed tech sheets, catalog options, and complete pricing checklists for our entire portfolio of high-end equipment, lab systems, and premium consumables.
+            </p>
+            <button 
+              className="btn-corporate catalog-btn"
+              onClick={handleDownloadCatalog}
+              disabled={isDownloading}
+            >
+              <Download size={18} /> {isDownloading ? 'Preparing Download...' : 'Download 2026 Catalog (PDF)'}
+            </button>
+          </div>
+
         </div>
       </section>
 
-      {/* ═══════ EMERGENCY CTA ═══════ */}
-      <section className="contact-emergency-section" ref={(el) => (sectionRefs.current[3] = el)}>
+      {/* ═══════ B2B FAQ ACCORDION SECTION ═══════ */}
+      <section className="contact-faq-section" ref={(el) => (sectionRefs.current[3] = el)}>
         <div className="container">
-          <div className="contact-emergency-banner">
-            <div className="emergency-pulse"></div>
+          <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <h2 className="font-title video-text-effect" style={{ fontSize: '2.2rem', marginTop: '0.5rem' }}>Frequently Asked Questions</h2>
+            <p style={{ color: 'var(--text-secondary)', marginTop: '0.8rem', fontSize: '0.95rem' }}>Find quick answers about distribution, installation support, warranties, and orders.</p>
+          </div>
+
+          <div className="faq-grid">
+            {faqs.map((faq, idx) => (
+              <div 
+                key={idx} 
+                className={`faq-item ${openFaq === idx ? 'faq-item-active' : ''}`}
+              >
+                <button 
+                  className="faq-question" 
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown className="faq-icon" size={18} />
+                </button>
+                <div className="faq-answer">
+                  <p style={{ margin: 0 }}>{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ TECHNICAL SUPPORT SERVICE CTA ═══════ */}
+      <section className="contact-emergency-section" ref={(el) => (sectionRefs.current[4] = el)}>
+        <div className="container">
+          <div className="contact-emergency-banner" style={{ background: 'linear-gradient(135deg, #0f172a, #1e293b)' }}>
+            <div className="emergency-pulse" style={{ backgroundColor: 'var(--accent-primary)' }}></div>
             <div className="emergency-content">
-              <div className="emergency-icon-wrap">
-                <Phone size={28} />
+              <div className="emergency-icon-wrap" style={{ background: 'var(--accent-primary)' }}>
+                <Clock size={28} />
               </div>
               <div>
-                <h3 className="font-title emergency-title">Dental Emergency?</h3>
+                <h3 className="font-title emergency-title">Need Technical Service?</h3>
                 <p className="emergency-desc">
-                  For urgent dental issues, our emergency line is available 24/7. 
-                  Don't wait — call us immediately for same-day emergency care.
+                  For equipment breakdowns, calibrations, or installation assistance, 
+                  our certified biomedical engineers are available for prompt site visits.
                 </p>
               </div>
             </div>
-            <a href="tel:+919999999999" className="emergency-call-btn">
-              <Phone size={18} /> Call Emergency Line
+            <a href="tel:+919999999999" className="emergency-call-btn" style={{ background: 'var(--accent-primary)' }}>
+              <Phone size={18} /> Contact Technical Service
             </a>
           </div>
         </div>

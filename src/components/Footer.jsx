@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, ArrowRight, MapPin } from 'lucide-react';
 import { footerData } from '../data/dentalData';
 import logo from '../assets/logo.png';
 
@@ -24,72 +24,164 @@ const WhatsappIcon = ({ size = 24, color = 'currentColor' }) => (
   </svg>
 );
 
+const SocialLink = ({ href, label, children }) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    aria-label={label}
+    style={{ 
+      width: '40px',
+      height: '40px',
+      borderRadius: '10px',
+      background: 'var(--bg-secondary)',
+      border: '1px solid var(--border-color)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'var(--text-secondary)',
+      transition: 'all 0.3s ease',
+      textDecoration: 'none'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.background = 'var(--accent-primary)';
+      e.currentTarget.style.color = '#fff';
+      e.currentTarget.style.borderColor = 'var(--accent-primary)';
+      e.currentTarget.style.transform = 'translateY(-3px)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.background = 'var(--bg-secondary)';
+      e.currentTarget.style.color = 'var(--text-secondary)';
+      e.currentTarget.style.borderColor = 'var(--border-color)';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    {children}
+  </a>
+);
+
 const Footer = () => {
   return (
-    <footer className="footer glow-wrapper" style={{ 
+    <footer className="footer" style={{ 
       position: 'relative', 
       overflow: 'hidden', 
-      background: 'var(--glass-bg)', 
-      backdropFilter: 'var(--glass-blur)',
-      WebkitBackdropFilter: 'var(--glass-blur)',
-      borderTop: '1px solid var(--glass-border)', 
-      boxShadow: 'var(--glass-shadow)',
-      padding: 'clamp(3rem, 10vw, 6rem) 0 3rem' 
+      background: 'var(--bg-secondary)', 
+      borderTop: 'none',
+      padding: '0'
     }}>
-      <div className="container">
-        <div className="responsive-grid" style={{ textAlign: 'left', marginBottom: '4rem', gap: '3rem' }}>
+      {/* Gradient top accent line */}
+      <div style={{ 
+        height: '3px', 
+        background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary), var(--accent-primary))',
+        backgroundSize: '200% 100%',
+        animation: 'shimmer 4s linear infinite'
+      }}></div>
+
+      {/* Newsletter CTA Strip */}
+      <div style={{
+        background: 'var(--bg-card)',
+        borderBottom: '1px solid var(--border-color)',
+        padding: 'clamp(2rem, 4vw, 3rem) 0'
+      }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
           <div className="mobile-text-center">
-            <div style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }} className="mobile-text-center">
-              <Link to="/" className="logo font-playfair" style={{ justifyContent: 'inherit' }}>
-                <div className="logo-container" style={{ width: 'fit-content' }}>
-                  <img src={logo} alt="Denteal Care Logo" className="logo-img" style={{ height: '40px' }} />
-                </div>
-                <div className="logo-text-wrapper">
-                  <span className="logo-name" style={{ fontSize: '1.1rem' }}>DENTEAL</span>
-                  <span className="logo-sub" style={{ fontSize: '0.5rem' }}>CARE CLINIC</span>
-                </div>
-              </Link>
-            </div>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.8, maxWidth: '400px' }} className="mobile-margin-b">
-              {footerData.description}
+            <h3 className="font-title" style={{ fontSize: '1.3rem', marginBottom: '0.3rem', color: 'var(--text-primary)' }}>
+              Stay Updated With Latest Arrivals
+            </h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', margin: 0 }}>
+              Get notified about new dental equipment, brand launches, and exclusive B2B offers.
             </p>
           </div>
+          <a 
+            href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20receive%20product%20updates%20from%20Sarojini%20Dental"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gradient"
+            style={{ flexShrink: 0, textDecoration: 'none', fontSize: '0.78rem', padding: '0.8rem 1.8rem' }}
+          >
+            Get Updates on WhatsApp <ArrowRight size={14} />
+          </a>
+        </div>
+      </div>
 
-          <div className="mobile-text-center">
-            <h4 className="font-title" style={{ fontSize: '1.2rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Our Treatments</h4>
-            <ul style={{ listStyle: 'none', fontSize: '0.9rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '1rem', padding: 0 }}>
-              {footerData.services.map((service, idx) => (
-                <li key={idx}>
-                  <Link to="/services" className="footer-link" style={{ textDecoration: 'none', color: 'var(--text-secondary)', transition: 'all 0.3s ease', display: 'inline-block' }}>
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mobile-text-center">
-            <h4 className="font-title" style={{ fontSize: '1.2rem', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>Stay Connected</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'inherit' }}>
-              <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'inherit' }}>
-                <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', transition: '0.3s' }} className="hover-scale" aria-label="WhatsApp"><WhatsappIcon size={22} /></a>
-                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', transition: '0.3s' }} className="hover-scale" aria-label="Facebook"><FacebookIcon size={22} /></a>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-primary)', transition: '0.3s' }} className="hover-scale" aria-label="Instagram"><InstagramIcon size={22} /></a>
-                <a href="mailto:contact@dentealcare.com" style={{ color: 'var(--accent-primary)', transition: '0.3s' }} className="hover-scale" aria-label="Email"><Mail size={22} /></a>
-                <a href="tel:+919999999999" style={{ color: 'var(--accent-primary)', transition: '0.3s' }} className="hover-scale" aria-label="Phone"><Phone size={22} /></a>
+      {/* Main Footer Content */}
+      <div style={{ padding: 'clamp(3rem, 8vw, 5rem) 0 2.5rem' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '3rem', textAlign: 'left', marginBottom: '3.5rem' }}>
+            
+            {/* Company Info */}
+            <div className="mobile-text-center">
+              <div style={{ marginBottom: '1.5rem' }}>
+                <Link to="/" className="logo font-playfair" style={{ justifyContent: 'inherit' }}>
+                  <div className="logo-container" style={{ width: 'fit-content' }}>
+                    <img src={logo} alt="Sarojini Dental Logo" className="logo-img" style={{ height: '38px' }} />
+                  </div>
+                  <div className="logo-text-wrapper">
+                    <span className="logo-name" style={{ fontSize: '1.1rem' }}>SAROJINI</span>
+                    <span className="logo-sub" style={{ fontSize: '0.5rem' }}>DENTAL & CO.</span>
+                  </div>
+                </Link>
               </div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                {footerData.contact.location}<br />
-                {footerData.contact.hours}
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.8, maxWidth: '350px' }} className="mobile-margin-b">
+                {footerData.description}
               </p>
             </div>
-          </div>
-        </div>
 
-        <div style={{ borderTop: '1px solid rgba(0,0,0,0.05)', paddingTop: '2.5rem', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.75rem', opacity: 0.6, letterSpacing: '1px', textTransform: 'uppercase' }}>
-            © 2026 DENTEAL CARE CLINIC • ALL RIGHTS RESERVED
-          </p>
+            {/* Product Portfolio */}
+            <div className="mobile-text-center">
+              <h4 className="font-title" style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.8rem' }}>Product Portfolio</h4>
+              <ul style={{ listStyle: 'none', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: 0 }}>
+                {footerData.services.map((service, idx) => (
+                  <li key={idx}>
+                    <Link to="/services" className="footer-link" style={{ textDecoration: 'none', color: 'var(--text-secondary)', transition: 'all 0.3s ease', display: 'inline-block' }}>
+                      {service}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Quick Links */}
+            <div className="mobile-text-center">
+              <h4 className="font-title" style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.8rem' }}>Company</h4>
+              <ul style={{ listStyle: 'none', fontSize: '0.88rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.8rem', padding: 0 }}>
+                <li><Link to="/about" className="footer-link" style={{ textDecoration: 'none', color: 'var(--text-secondary)', transition: 'all 0.3s ease', display: 'inline-block' }}>Company Profile</Link></li>
+                <li><Link to="/services" className="footer-link" style={{ textDecoration: 'none', color: 'var(--text-secondary)', transition: 'all 0.3s ease', display: 'inline-block' }}>Our Products</Link></li>
+                <li><Link to="/contact" className="footer-link" style={{ textDecoration: 'none', color: 'var(--text-secondary)', transition: 'all 0.3s ease', display: 'inline-block' }}>B2B Inquiries</Link></li>
+              </ul>
+            </div>
+
+            {/* Connect */}
+            <div className="mobile-text-center">
+              <h4 className="font-title" style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.8rem' }}>Connect</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', alignItems: 'inherit' }}>
+                <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'inherit', flexWrap: 'wrap' }}>
+                  <SocialLink href="https://wa.me/919999999999" label="WhatsApp"><WhatsappIcon size={18} /></SocialLink>
+                  <SocialLink href="https://www.facebook.com" label="Facebook"><FacebookIcon size={18} /></SocialLink>
+                  <SocialLink href="https://www.instagram.com" label="Instagram"><InstagramIcon size={18} /></SocialLink>
+                  <SocialLink href="mailto:sales@sarojinidental.com" label="Email"><Mail size={18} /></SocialLink>
+                  <SocialLink href="tel:+919999999999" label="Phone"><Phone size={18} /></SocialLink>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                  <MapPin size={14} style={{ flexShrink: 0, marginTop: '2px', color: 'var(--accent-primary)' }} />
+                  <span>{footerData.contact.location}</span>
+                </div>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                  {footerData.contact.hours}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
+              © 2026 SAROJINI DENTAL & CO. ALL RIGHTS RESERVED.
+            </p>
+            <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+              Bhubaneswar, Odisha, India
+            </p>
+          </div>
         </div>
       </div>
     </footer>

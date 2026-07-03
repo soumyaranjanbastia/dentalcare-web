@@ -11,135 +11,144 @@ import servicesImg from '../assets/services.png';
 import teamImg from '../assets/team.png';
 
 export const navigationLinks = [
-  { path: '/', label: 'Smile Clinic' },
-  { path: '/about', label: 'Philosophy' },
-  { path: '/services', label: 'Treatments' },
-  { path: '/contact', label: 'Bookings' },
+  { path: '/', label: 'Home' },
+  { path: '/about', label: 'Company Profile' },
+  { path: '/services', label: 'Product Portfolio' },
+  { path: '/contact', label: 'Inquiries' },
 ];
 
 export const heroData = {
-  title: "Sculpting Healthy, Radiant Smiles",
-  subtitle: "Experience premium dentistry combining world-class clinical expertise, state-of-the-art technology, and absolute patient comfort.",
+  title: "Delivering Precision. Inspiring Confidence. Advancing Dentistry.",
+  subtitle: "Established in 2022, Sarojini Dental & Co. is a premier distributor of high-end dental equipment, laboratory systems, instruments, and consumables.",
   modal: {
-    title: "A New Standard of Care",
-    desc: "Welcome to Denteal Care. Our customized oral health solutions are tailored to restore functionality and enhance aesthetics in a serene, stress-free clinical environment."
+    title: "Excellence in Dental Solutions",
+    desc: "We are committed to delivering world-class dental solutions to clinics, hospitals, laboratories, and educational institutions. Combining superior product quality with exceptional customer service, competitive pricing, timely delivery, and dependable after-sales support, we empower dental professionals to achieve outstanding clinical outcomes."
   }
 };
 
 export const experiences = [
   {
     id: 1,
-    title: "Precision Dentistry",
-    desc: "Our advanced 3D diagnostic imaging and micro-dentistry ensure highly accurate, minimally-invasive treatments.",
+    title: "Genuine Brands & Warranty",
+    desc: "We supply only authentic products from globally recognized manufacturers, backed by full manufacturer warranties.",
     icon: ShieldCheck
   },
   {
     id: 2,
-    title: "Smile Artistry",
-    desc: "We blend medical science with artistic digital design to craft natural, stunning smiles tailored to your face.",
+    title: "Advanced Technology",
+    desc: "Bringing digital dentistry, advanced diagnostics, and cutting-edge laboratory systems to your facility.",
     icon: Sparkles
   },
   {
     id: 3,
-    title: "Anxiety-Free Comfort",
-    desc: "Enjoy a relaxing treatment session with modern comforts, friendly guidance, and completely gentle techniques.",
+    title: "Technical & After-Sales Support",
+    desc: "Our dedicated technical service team ensures seamless installations, training, and reliable after-sales maintenance.",
     icon: Heart
   }
 ];
 
 export const facilitiesData = {
-  title: "Our World-Class Clinic",
-  desc: "From panoramic intraoral scanning suites to ergonomic-designed patient loungers, every corner of Denteal Care is custom-built to ensure your ultimate relaxation and safety. Discover our sterilization and treatment zones."
+  title: "State-of-the-Art Showroom & Warehouse",
+  desc: "Explore our modern showroom and inventory hubs housing advanced intraoral scanner demo suites, laboratory CAD/CAM systems, and a comprehensive inventory of clinical consumables. We maintain robust stock levels to ensure prompt deliveries."
 };
 
 export const specialOffer = {
-  title: "Radiant Smile Package",
-  desc: "Book your new-patient consultation today and receive a complimentary professional teeth shade matching and 3D intraoral scan with any routine cleaning treatment.",
+  title: "Complete Clinic Setup Consulting",
+  desc: "Planning to start a new dental clinic or upgrade your current facility? Schedule a free consulting session with our product experts to map out your equipment and layout needs.",
   icon: Sparkles
 };
 
+export const partnerBrands = [
+  { name: "Novolase", type: "Dental Lasers & Technology" },
+  { name: "Orikam Healthcare India Pvt. Ltd.", type: "Clinical Instruments & Consumables" },
+  { name: "GC India Pvt. Ltd.", type: "Restoratives & Glass Ionomer Cements" },
+  { name: "Prevest DenPro Limited", type: "World-class Restoratives & Adhesives" },
+  { name: "Shofu Dental India Pvt. Ltd.", type: "Precision Abrasives & CAD/CAM Materials" },
+  { name: "Aidite India Pvt. Ltd.", type: "CAD/CAM Zirconia Blocks & Lab Tech" },
+  { name: "Dürr Dental India Pvt. Ltd.", type: "Imaging, Suction & Air Systems" },
+  { name: "Woson India Pvt. Ltd.", type: "Sterilizers & Infection Control" }
+];
+
 export const servicesData = {
-  title: "Advanced Oral Services",
-  subtitle: "We offer a comprehensive selection of clinical, restorative, and cosmetic solutions designed to keep your teeth and gums in optimal health.",
+  title: "Our Curated Product Portfolio",
+  subtitle: "We distribute advanced dental technology, precision laboratory equipment, premium instruments, and clinical consumables from leading global brands.",
   therapies: [
     {
-      title: "Teeth Whitening",
-      desc: "Advanced laser whitening that lifts stains and brightens your smile by several shades in just a single session, with zero sensitivity formulas.",
-      icon: Sparkles,
-      price: "EXPRESS: ₹4500 | ADVANCED LASER: ₹9500",
+      title: "Advanced Dental Equipment",
+      desc: "High-end dental treatment units, diagnostic imaging systems, diode lasers, and ergonomic operatory configurations to upgrade clinic productivity.",
+      icon: Activity,
+      price: "PARTNERS: NOVOLASE | DÜRR DENTAL | WOSON",
       image: servicesImg
     },
     {
-      title: "Dental Implants",
-      desc: "Premium, biocompatible titanium implants that look, feel, and function like natural teeth, restoring your confidence and bite stability.",
+      title: "CAD/CAM Laboratory Systems",
+      desc: "Precision dental scanners, dry/wet CAD/CAM milling machines, laboratory sintering furnaces, and elite 3D printers for digital workflows.",
       icon: ShieldCheck,
-      price: "CONSULTATION: FREE | SINGLE IMPLANT: FROM ₹35000",
+      price: "PARTNERS: AIDITE | SHOFU | ORIKAM",
       image: treatmentImg
     },
     {
-      title: "Cosmetic Veneers",
-      desc: "Custom porcelain veneers that mask chips, gaps, and discoloration, providing a flawless and natural-looking smile makeover.",
+      title: "Premium Clinical Instruments",
+      desc: "High-speed turbines, handpieces, premium micro-surgical kits, extraction forceps, and diagnostic dental instruments designed for durability.",
       icon: Award,
-      price: "PORCELAIN (Per Tooth): FROM ₹12000 | COMPOSITE: ₹5000",
+      price: "PARTNERS: ORIKAM | SHOFU | GC INDIA",
       image: bookingImg
     },
     {
-      title: "Clear Aligners",
-      desc: "Straighten your teeth discreetly with customized invisible aligners, backed by 3D orthodontic planning for optimal and fast results.",
-      icon: Smile,
-      price: "EVALUATION: ₹1500 | TREATMENT PLAN: FROM ₹80000",
+      title: "Restorative Materials",
+      desc: "World-class composite restoratives, glass ionomer cements, bonding agents, flowable composites, and clinical cements from recognized brands.",
+      icon: Sparkles,
+      price: "PARTNERS: GC INDIA | PREVEST DENPRO",
       image: bgImg
     },
     {
-      title: "Root Canal Therapy",
-      desc: "Painless, single-visit root canal treatments performed under microscopic guidance to rescue damaged teeth from extraction.",
-      icon: Activity,
-      price: "SINGLE CANAL: ₹6500 | MULTI-CANAL: ₹9000",
+      title: "Infection Control & Sterilization",
+      desc: "Class B autoclaves, thermal disinfectors, ultrasonic cleaners, and hospital-grade surface disinfectants to meet global safety standards.",
+      icon: Heart,
+      price: "PARTNERS: WOSON | DÜRR DENTAL",
       image: treatmentImg
     },
     {
-      title: "Routine Care & Scaling",
-      desc: "Ultrasonic scaling and polishing to remove plaque and tartar buildup, promoting healthy gums and fresh breath.",
-      icon: Heart,
-      price: "SCALING & POLISHING: ₹2500 | DEEP CLEANING: ₹4500",
+      title: "Everyday Clinical Consumables",
+      desc: "Micro-applicators, dental bibs, suction tips, sterile syringes, impression trays, and essential disposable clinical items.",
+      icon: Smile,
+      price: "PARTNERS: PREVEST DENPRO | ORIKAM",
       image: servicesImg
     }
   ],
   membership: {
-    title: "Oral Health Club",
-    desc: "Maintain your smile effortlessly with our annual wellness plans. Enjoy regular checkups, professional cleanings, and priority access."
+    title: "Wholesale & AMC Support Programs",
+    desc: "Ensure maximum uptime for your clinic or laboratory. Partner with Sarojini Dental & Co. for bulk consumable contracts and Annual Maintenance Services."
   },
   membershipTiers: [
     {
-      name: "Preventive Silver",
-      price: "₹2,999 / yr",
+      name: "Clinic Consumables Contract",
+      price: "Custom Quote",
       benefits: [
-        "2 x Scaling & Polishing Sessions",
-        "2 x Detailed Dental Checkups",
-        "1 x digital X-ray scan (if needed)",
-        "10% off any fillings & basic care"
+        "Guaranteed stock levels for key consumables",
+        "Fixed pricing on monthly consumables",
+        "Free delivery on all clinical orders",
+        "10% discount on supplementary instruments"
       ]
     },
     {
-      name: "Family Gold",
-      price: "₹7,999 / yr",
+      name: "Standard Equipment AMC",
+      price: "Call for Pricing",
       benefits: [
-        "Covers up to 3 family members",
-        "2 x Scaling & Cleanings per member",
-        "Fluoride therapy for children",
-        "15% off all cosmetic & restorative care",
-        "Priority emergency appointment slots"
+        "2 x Preventive Maintenance Visits per year",
+        "Priority technical service within 24 hours",
+        "5% discount on manufacturer spare parts",
+        "Free software updates for digital devices"
       ]
     },
     {
-      name: "Elite Platinum",
-      price: "₹14,999 / yr",
+      name: "Elite Institutional Partner",
+      price: "Custom Solutions",
       benefits: [
-        "Unlimited clinical examinations",
-        "3 x Scaling & Stain Removal sessions",
-        "1 x Premium Home Teeth Whitening Kit",
-        "25% off all surgical & implant care",
-        "Direct consultation with head specialist"
+        "Complete Annual Maintenance Contract (AMC)",
+        "Dedicated on-site support engineer",
+        "Replacement backup equipment during repairs",
+        "Hands-on training for staff and technicians"
       ]
     }
   ]
@@ -147,93 +156,93 @@ export const servicesData = {
 
 export const aboutData = {
   sanctuary: {
-    title: "Our Philosophy",
-    desc: "Denteal Care was established with the vision that dental treatment should be a pleasant, soothing journey. Located in the heart of Bhubaneswar, our clinic blends modern medical excellence with patient-centric luxury, transforming oral care into a wellness ritual."
+    title: "Our Background",
+    desc: "Sarojini Dental & Co. was established in 2022 as a premier distributor of high-end dental equipment, laboratory systems, instruments, and consumables. Headquartered in Odisha, we serve dental clinics, hospitals, laboratories, and educational institutions with a dedication to delivering world-class technology and reliable after-sales support."
   },
   pillars: [
-    { icon: ShieldCheck, title: "Sterilization", desc: "Exceeding FDA and international protocols." },
-    { icon: Heart, title: "Gentle Touch", desc: "Anxiety-free treatments using micro-techniques." },
-    { icon: Sparkles, title: "Aesthetics", desc: "Merging facial analysis with dental harmony." },
-    { icon: Smile, title: "Wellness", desc: "Restoring systemic health by optimizing oral health." }
+    { icon: ShieldCheck, title: "Premium Quality", desc: "Authentic products from world-class manufacturers." },
+    { icon: Heart, title: "Service Focus", desc: "Dedicated consultation, delivery, and warranty support." },
+    { icon: Sparkles, title: "Modern Tech", desc: "Advanced dental technology and digital lab solutions." },
+    { icon: Smile, title: "Long-term Trust", desc: "Building sustainable partnerships based on excellence." }
   ],
   features: [
     { 
       icon: ShieldCheck, 
-      title: "Biocompatible", 
-      desc: "We use only premium, non-toxic materials for filling and restoration." 
+      title: "Genuine Brands", 
+      desc: "Authorized channel partner representing GC, Shofu, Aidite, Dürr Dental, Woson, Novolase, Orikam, and Prevest DenPro." 
     },
     { 
       icon: Award, 
-      title: "Specialists", 
-      desc: "Our board-certified dentists possess decades of collective clinical experience." 
+      title: "Expert Consultants", 
+      desc: "Professional guidance to select systems tailored to your clinical volume and laboratory needs." 
     }
   ],
   experts: {
-    title: "Our Dental Clinicians",
-    desc: "Our medical team consists of highly qualified, specialized practitioners who stay at the forefront of dental science. From dental surgery to aesthetic restoration, we work in unison to provide impeccable care."
+    title: "Technical & Advisory Experts",
+    desc: "Our corporate structure includes trained biomedical service engineers and dental product specialists who ensure that every product supplied meets the highest standards of operation and reliability."
   },
   teamMembers: [
     {
-      name: "Dr. Yash Vardhan",
-      role: "Senior Implantologist",
-      desc: "With over 15 years of clinical practice, Dr. Yash specializes in complex bone grafts, sinus lifts, and full-mouth reconstructions using advanced dental implants.",
-      specialty: "Dental Implants, Oral Reconstruction"
+      name: "Mr. R. K. Mohanty",
+      role: "Director & Founder",
+      desc: "Guiding Sarojini Dental & Co. since 2022 with over 18 years of B2B healthcare distribution expertise across Eastern India.",
+      specialty: "Corporate Partnerships & Strategic Growth"
     },
     {
-      name: "Dr. Sneha Rao",
-      role: "Aesthetic Dentist & Orthodontist",
-      desc: "Dr. Sneha trained extensively in Digital Smile Design and cosmetic veneers. She is certified in clear aligners and specializes in teeth straightening.",
-      specialty: "Invisible Aligners, Veneers & Cosmetic Bonding"
+      name: "Er. Debasis Panda",
+      role: "Chief Service Engineer",
+      desc: "Certified technician specialized in CAD/CAM dental scanners, dry/wet milling configurations, and high-frequency dental X-ray calibration.",
+      specialty: "Biomedical Installations & AMC Maintenance"
     },
     {
-      name: "Dr. David Chen",
-      role: "Micro-Endodontist",
-      desc: "Dr. David focuses on saving natural teeth through painless root canal therapy under microscope magnification and state-of-the-art dental lasers.",
-      specialty: "Painless Root Canal, Micro-Restorations"
+      name: "Ms. Suchitra Sen",
+      role: "Product Consultant",
+      desc: "Specialist in clinical restoratives, impression systems, and digital workflow integrations, aiding dentists in choosing ideal consumables.",
+      specialty: "Clinical Guidance & Lab Systems"
     }
   ]
 };
 
 export const contactData = {
-  title: "Schedule a Consultation",
-  subtitle: "Ready to take control of your smile? Fill out our consultation request and our patient concierge will call to organize your appointment.",
+  title: "Connect with Sarojini Dental & Co.",
+  subtitle: "Ready to equip your clinic, hospital, or laboratory? Reach out to our B2B consultation team and our product coordinators will coordinate a prompt callback.",
   info: [
     { 
       icon: MapPin, 
-      title: "Our Clinic Location", 
-      desc: "123, Aesthetic Dental Tower,\nSuite 4B, Sector 5, Medical Zone,\nBhubaneswar, Odisha 751024" 
+      title: "Corporate Showroom & Office", 
+      desc: "Plot No. 452, Commercial District,\nJayadev Vihar, Bhubaneswar,\nOdisha 751013" 
     },
     { 
       icon: Phone, 
-      title: "Patient Helpline", 
+      title: "B2B Sales Helpline", 
       desc: "+91 99999 99999\n+91 88888 88888" 
     },
     { 
       icon: Mail, 
-      title: "Email Support", 
-      desc: "contact@dentealcare.com" 
+      title: "Official Correspondence", 
+      desc: "sales@sarojinidental.com\nsupport@sarojinidental.com" 
     }
   ],
   treatmentTypes: [
-    "Teeth Whitening",
-    "Dental Implants",
-    "Cosmetic Veneers",
-    "Clear Aligners / Orthodontics",
-    "Root Canal Treatment",
-    "Scaling & Routine Cleaning"
+    "Dental Equipment",
+    "CAD/CAM Lab Systems",
+    "Premium Instruments",
+    "Restorative Materials",
+    "Infection Control Systems",
+    "Everyday Consumables"
   ]
 };
 
 export const footerData = {
-  description: "Experience premium dentistry at Denteal Care. We combine elite clinical expertise with a relaxing, modern environment to craft healthy, radiant smiles.",
+  description: "Established in 2022, Sarojini Dental & Co. is a premier distributor of high-end dental equipment, laboratory systems, instruments, and consumables, serving institutions across India.",
   services: [
-    "Teeth Whitening",
-    "Dental Implants",
-    "Clear Aligners",
-    "Root Canal Therapy"
+    "Advanced Equipment",
+    "CAD/CAM Lab Systems",
+    "Premium Instruments",
+    "Restorative Materials"
   ],
   contact: {
-    location: "Bhubaneswar, Odisha",
-    hours: "Mon - Sat: 9:00 AM - 8:00 PM | Sun: Closed"
+    location: "Bhubaneswar, Odisha, India",
+    hours: "Mon - Sat: 9:30 AM - 6:30 PM | Sun: Closed"
   }
 };
