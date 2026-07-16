@@ -49,7 +49,7 @@ const Contact = () => {
       return;
     }
 
-    const whatsappNumber = "919999999999";
+    const whatsappNumber = "919178178178";
     const messageLines = [
       "🏢 *New B2B Dental Inquiry - Sarojini Dental & Co.* 🏢",
       "",
@@ -91,14 +91,14 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Call B2B Sales",
-      detail: "+91 99999 99999\n+91 88888 88888",
+      detail: "+91 91781 78178\n+91 97781 78178\n+91 90901 78178",
       accent: '#8b5cf6',
       bg: 'linear-gradient(135deg, #8b5cf6, #a78bfa)'
     },
     {
       icon: Mail,
       title: "Email Us",
-      detail: "sales@sarojinidental.com\nsupport@sarojinidental.com",
+      detail: "sarojinidental@gmail.com\nsales@sarojinidental.com\nsupport@sarojinidental.com",
       accent: '#f43f5e',
       bg: 'linear-gradient(135deg, #f43f5e, #fb7185)'
     }
@@ -494,7 +494,7 @@ const Contact = () => {
                 </p>
               </div>
             </div>
-            <a href="tel:+919999999999" className="emergency-call-btn" style={{ background: 'var(--accent-primary)' }}>
+            <a href="tel:+919178178178" className="emergency-call-btn" style={{ background: 'var(--accent-primary)' }}>
               <Phone size={18} /> Contact Technical Service
             </a>
           </div>

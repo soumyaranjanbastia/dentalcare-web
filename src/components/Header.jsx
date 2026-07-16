@@ -38,18 +38,34 @@ const Header = () => {
       <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
         {navigationLinks.map(link => (
           <li key={link.path}>
-            <Link 
-              to={link.path} 
-              onClick={closeMenu}
-              className={location.pathname === link.path ? 'active-link' : ''}
-              style={{ 
-                color: location.pathname === link.path ? 'var(--accent-primary)' : 'var(--text-secondary)',
-                fontWeight: location.pathname === link.path ? '700' : '500',
-                textDecoration: 'none'
-              }}
-            >
-              {link.label}
-            </Link>
+            {link.external ? (
+              <a
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontWeight: '500',
+                  textDecoration: 'none'
+                }}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link 
+                to={link.path} 
+                onClick={closeMenu}
+                className={location.pathname === link.path ? 'active-link' : ''}
+                style={{ 
+                  color: location.pathname === link.path ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                  fontWeight: location.pathname === link.path ? '700' : '500',
+                  textDecoration: 'none'
+                }}
+              >
+                {link.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>

@@ -1,4 +1,4 @@
-import { 
+import {
   Smile, ShieldAlert, Award, Star, Activity, Sparkles, Heart,
   ShieldCheck, MapPin, Phone, Mail, FileText, ClipboardList
 } from 'lucide-react';
@@ -15,6 +15,7 @@ export const navigationLinks = [
   { path: '/about', label: 'Company Profile' },
   { path: '/services', label: 'Product Portfolio' },
   { path: '/contact', label: 'Inquiries' },
+  { path: 'http://localhost:5174/', label: 'E-Store', external: true },
 ];
 
 export const heroData = {
@@ -166,15 +167,15 @@ export const aboutData = {
     { icon: Smile, title: "Long-term Trust", desc: "Building sustainable partnerships based on excellence." }
   ],
   features: [
-    { 
-      icon: ShieldCheck, 
-      title: "Genuine Brands", 
-      desc: "Authorized channel partner representing GC, Shofu, Aidite, Dürr Dental, Woson, Novolase, Orikam, and Prevest DenPro." 
+    {
+      icon: ShieldCheck,
+      title: "Genuine Brands",
+      desc: "Authorized channel partner representing GC, Shofu, Aidite, Dürr Dental, Woson, Novolase, Orikam, and Prevest DenPro."
     },
-    { 
-      icon: Award, 
-      title: "Expert Consultants", 
-      desc: "Professional guidance to select systems tailored to your clinical volume and laboratory needs." 
+    {
+      icon: Award,
+      title: "Expert Consultants",
+      desc: "Professional guidance to select systems tailored to your clinical volume and laboratory needs."
     }
   ],
   experts: {
@@ -207,20 +208,20 @@ export const contactData = {
   title: "Connect with Sarojini Dental & Co.",
   subtitle: "Ready to equip your clinic, hospital, or laboratory? Reach out to our B2B consultation team and our product coordinators will coordinate a prompt callback.",
   info: [
-    { 
-      icon: MapPin, 
-      title: "Corporate Showroom & Office", 
-      desc: "Plot No. 452, Commercial District,\nJayadev Vihar, Bhubaneswar,\nOdisha 751013" 
+    {
+      icon: MapPin,
+      title: "Corporate Showroom & Office",
+      desc: "Plot No. 452, Commercial District,\nJayadev Vihar, Bhubaneswar,\nOdisha 751013"
     },
-    { 
-      icon: Phone, 
-      title: "B2B Sales Helpline", 
-      desc: "+91 99999 99999\n+91 88888 88888" 
+    {
+      icon: Phone,
+      title: "B2B Sales Helpline",
+      desc: "+91 91781 78178\n+91 97781 78178\n+91 90901 78178"
     },
-    { 
-      icon: Mail, 
-      title: "Official Correspondence", 
-      desc: "sales@sarojinidental.com\nsupport@sarojinidental.com" 
+    {
+      icon: Mail,
+      title: "Official Correspondence",
+      desc: "sarojinidental@gmail.com\nsales@sarojinidental.com\nsupport@sarojinidental.com"
     }
   ],
   treatmentTypes: [

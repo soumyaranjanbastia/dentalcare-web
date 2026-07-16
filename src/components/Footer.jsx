@@ -93,7 +93,7 @@ const Footer = () => {
             </p>
           </div>
           <a 
-            href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20receive%20product%20updates%20from%20Sarojini%20Dental"
+            href="https://wa.me/919178178178?text=Hi%2C%20I%20want%20to%20receive%20product%20updates%20from%20Sarojini%20Dental"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-gradient"
@@ -156,11 +156,11 @@ const Footer = () => {
               <h4 className="font-title" style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.08em', fontSize: '0.8rem' }}>Connect</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', alignItems: 'inherit' }}>
                 <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'inherit', flexWrap: 'wrap' }}>
-                  <SocialLink href="https://wa.me/919999999999" label="WhatsApp"><WhatsappIcon size={18} /></SocialLink>
+                  <SocialLink href="https://wa.me/919178178178" label="WhatsApp"><WhatsappIcon size={18} /></SocialLink>
                   <SocialLink href="https://www.facebook.com" label="Facebook"><FacebookIcon size={18} /></SocialLink>
                   <SocialLink href="https://www.instagram.com" label="Instagram"><InstagramIcon size={18} /></SocialLink>
-                  <SocialLink href="mailto:sales@sarojinidental.com" label="Email"><Mail size={18} /></SocialLink>
-                  <SocialLink href="tel:+919999999999" label="Phone"><Phone size={18} /></SocialLink>
+                  <SocialLink href="mailto:sarojinidental@gmail.com" label="Email"><Mail size={18} /></SocialLink>
+                  <SocialLink href="tel:+919178178178" label="Phone"><Phone size={18} /></SocialLink>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
                   <MapPin size={14} style={{ flexShrink: 0, marginTop: '2px', color: 'var(--accent-primary)' }} />
