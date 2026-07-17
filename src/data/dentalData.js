@@ -15,7 +15,7 @@ export const navigationLinks = [
   { path: '/about', label: 'Company Profile' },
   { path: '/services', label: 'Product Portfolio' },
   { path: '/contact', label: 'Inquiries' },
-  { path: 'http://localhost:5174/', label: 'E-Store', external: true },
+  { path: 'https://sarojinidental.shop', label: 'E-Store', external: true },
 ];
 
 export const heroData = {
